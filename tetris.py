@@ -6,12 +6,14 @@ import random
 # Figure colors
 colors = [
     (0, 0, 0),
-    (120, 37, 179),
-    (100, 179, 179),
-    (80, 34, 22),
-    (80, 134, 22),
-    (180, 34, 22),
-    (180, 34, 122),
+    (255, 0, 0),
+    (255, 127, 0),
+    (255, 255, 0),
+    (0, 255, 0),
+    (0, 0, 255),
+    (0, 255, 255),
+    (128, 0, 128),
+
 ]
 
 # Figure types with rotations
@@ -147,7 +149,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (128, 128, 128)
 
-size = (400, 500)
+size = (600, 500)
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Tetris")
@@ -197,7 +199,7 @@ while not done:
 
     for i in range(game.height):
         for j in range(game.width):
-            pygame.draw.rect(screen, GRAY, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
+            pygame.draw.rect(screen, WHITE, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
             if game.field[i][j] > 0:
                 pygame.draw.rect(screen, colors[game.field[i][j]],
                                  [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2, game.zoom - 1])
@@ -212,12 +214,15 @@ while not done:
                                       game.y + game.zoom * (i + game.figure.y) + 1,
                                       game.zoom - 2, game.zoom - 2])
 
+# Fonts and color for text
     font = pygame.font.SysFont('Calibri', 25, True, False)
     font1 = pygame.font.SysFont('comicsans', 65, True, False)
     text = font.render("Score: " + str(game.score), True, WHITE)
     text_game_over = font1.render("Game Over", True, (255, 125, 0))
     text_game_over1 = font1.render("Press ESC", True, (255, 215, 0))
-  
+    text_game_start = font1.render("Click to start", True, (255, 125, 0))
+    
+    
     screen.blit(text, [0, 0])
     if game.state == "gameover":
         screen.blit(text_game_over, [60, 200])
