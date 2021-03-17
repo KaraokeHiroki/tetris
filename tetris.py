@@ -1,3 +1,5 @@
+#https://levelup.gitconnected.com/writing-tetris-in-python-2a16bddb5318 This is where I got the tutorial for tetris
+
 # Import and initialize the pygame
 
 import pygame
@@ -149,9 +151,11 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (128, 128, 128)
 
-size = (600, 500)
+# Screen size
+size = (400, 500)
 screen = pygame.display.set_mode(size)
 
+# Display name
 pygame.display.set_caption("Tetris")
 
 # Loop until the user clicks the close button
@@ -196,8 +200,9 @@ while not done:
             if event.key == pygame.K_DOWN:
                 pressing_down = False
 
-    screen.fill(BLACK)
+    screen.fill(BLACK) # Screen color
 
+# Rectangle size and color
     for i in range(game.height):
         for j in range(game.width):
             pygame.draw.rect(screen, (51, 0, 102), [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
@@ -221,14 +226,13 @@ while not done:
     text = font.render("Score: " + str(game.score), True, WHITE)
     text_game_over = font1.render("Game Over", True, (WHITE))
     text_game_over1 = font1.render("Press ESC", True, (WHITE))
-    
-    
+
+# Display text
     screen.blit(text, [0, 0])
     if game.state == "gameover":
         screen.blit(text_game_over, [60, 200])
-        screen.blit(text_game_over1, [70, 265])    
-        
-    
+        screen.blit(text_game_over1, [70, 265])     
+
     pygame.display.flip()
     clock.tick(fps)
 
